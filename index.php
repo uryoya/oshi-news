@@ -1,9 +1,16 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$check_word = "POSTを受け取りました";
+	// POSTの時の処理
+	// - URLをDBに保存する
+	// - ランキングを更新する
+	// - 最新版のランキングを表示する
+	$url = $_POST["url"];
 } else {
-	$check_word = "GETを受け取りました";
+	// GETの時の処理
+	// - DBからランキングを取得
+	// - 最新版のランキングを表示する
+	$url = "GETを受け取りました";
 }
 
 ?>
@@ -15,7 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<title>推しニュース（仮称）</title>
 	</head>
 	<body>
-		<?php echo $check_word ?>
+		<form action="index.php" method="POST">
+			<input type="text" name="url">
+			<input type="submit" value="submit">
+		</form>
+		<?php echo $url ?><br />
 	</body>
 </html>
 
