@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("Location: http://localhost:8888/index.php");
 		exit();
  	}
-	$datetime = date("Y-m-d H:i:s");
 	
 	// urlの登録
 	// 既にあるURLの確認
@@ -23,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	foreach ($results as $result) {
 		error_log($result, 0);
 	}
+	$datetime = date("Y-m-d H:i:s");
 	if ($result > 0) {
 		$dbh->exec(
 			"UPDATE urls ".
