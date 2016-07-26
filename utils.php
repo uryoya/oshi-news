@@ -20,6 +20,16 @@ function back_home() {
 	header("Location: http://localhost:8888/index.php");
 }
 
+/**
+ * ページのタイトルを取得
+ */
+function get_title($url) {
+	$dom = new DOMDocument;
+	@$dom->loadHTMLFile($url);
+	$xpath = new DOMXPath($dom);
+	return $xpath->query("//title")->item(0)->textContent;
+}
+
 
 class NewsRanking {
 	function __construct() {
@@ -32,20 +42,16 @@ class NewsRanking {
 	function vote($url) {
 		// 既にあるURLの確認
 		$sql = "SELECT id FROM urls WHERE '".$url."' = url;";
-		echo $sql;
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 		$results = $sth->fetch(PDO::FETCH_ASSOC);
-		foreach ($results as $result) {
-			error_log($result, 0);
-		}
 
-//		$datetime = date("Y-m-d H:i:s");
 		if ($result > 0) {	// 既にURLがあれば投票数+1
 			$sql = "UPDATE urls SET vote=vote+1 WHERE id=".$result.";";
 			$this->dbh->exec($sql);
 		} else {	// 投票がなければDB登録
-			$sql = "INSERT INTO urls (url, vote) VALUES ('".$url."', 1);";
+			$title = get_title($url);
+			$sql = "INSERT INTO urls (url, vote, title) VALUES ('".$url."', 1, '".$title."');";
 			$this->dbh->exec($sql);
 		}
 	}
@@ -54,7 +60,7 @@ class NewsRanking {
 	 * ランキング取得
 	 */
 	function get_ranking($limit) {
-		$sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT ".$limit.";";
+		$sql = "SELECT url, title FROM urls ORDER BY vote DESC LIMIT ".$limit.";";
 		return $this->dbh->query($sql);
 	}
 

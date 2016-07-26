@@ -4,7 +4,7 @@
 require "./utils.php";
 
 $ranking = new NewsRanking();
-$ranked_urls = $ranking->get_ranking(10);
+$ranking = $ranking->get_ranking(10);
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +20,8 @@ $ranked_urls = $ranking->get_ranking(10);
 		</form>
 		<ol>
 			<?php
-			foreach ($ranked_urls as $url) {
-				$url = $url['url'];
-				echo "<li><a href=\"".$url."\">".$url."</a>" ;
+			foreach ($ranking as $row) {
+				echo '<li><a href="'.$row['url'].'">'.$row['title'].'</a></li>' ;
 			}
 			?>
 		</ol>

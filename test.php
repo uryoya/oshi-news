@@ -1,8 +1,9 @@
 <?php
 require "./utils.php";
 
-if (is_url("http://h.jp")) {
-	echo "this url exists!\n";
-} else {
-	echo "this url not exists!\n";
+$r = new NewsRanking();
+$ranking = $r->get_ranking(10);
+foreach ($ranking as $n) {
+	echo $n['url']."\n";
+	echo $n['title']."\n";
 }
