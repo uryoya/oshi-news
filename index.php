@@ -14,7 +14,7 @@ $sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT 3;";
 	</head>
 	<body>
 		<form action="save.php" method="POST">
-			<input type="text" name="url">
+			<input type="url" name="url">
 			<input type="submit" value="submit">
 		</form>
 		<ol>
@@ -22,8 +22,6 @@ $sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT 3;";
 foreach ($dbh->query($sql) as $row) {
 	$url = $row['url'];
 	echo "<li><a href=\"".$url."\">".$url."</a>" ;
-}
-foreach ($urls as $url) {
 }
 ?>
 		</ol>
