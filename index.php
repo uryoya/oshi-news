@@ -22,19 +22,31 @@ $ranking = $ranking->get_ranking(10);
 		<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h1>推しニュース!</h1>
-		<p>自分の今気になっているニュースを共有しよう！</p>
-		<form action="save.php" method="POST">
-			<input type="url" name="url">
-			<input type="submit" value="submit">
-		</form>
-		<ol>
-			<?php
-			foreach ($ranking as $row) {
-				echo '<li><a href="'.$row['url'].'">'.$row['title'].'</a></li>' ;
-			}
-			?>
-		</ol>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<h1>推しニュース!</h1>
+					<p>自分の今気になっているニュースを共有しよう！</p>
+					<form action="save.php" method="POST">
+						<div class="input-group">
+							<input class="form-control" type="url" name="url" placeholder="e.g. https://example.com">
+							<span class="input-group-btn">
+								<button class="btn btn-primary btn-default" type="submit">Submit!</button>
+							</span>
+						</div>
+					</form>
+					<ol>
+						<?php
+						foreach ($ranking as $row) {
+							echo '<li><a href="'.$row['url'].'">'.$row['title'].'</a></li>' ;
+						}
+						?>
+					</ol>
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+		</div>
 	</body>
 </html>
 

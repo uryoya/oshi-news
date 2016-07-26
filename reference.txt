@@ -4,3 +4,4 @@ http://qiita.com/mpyw/items/c0312271819baee09132
 https://secure.php.net/manual/ja/index.php
 http://d.hatena.ne.jp/rdera/20101208/1291819918
 http://stackoverflow.com/questions/11280714/how-to-get-title-from-a-website-by-xpath
+http://techacademy.jp/magazine/6270
