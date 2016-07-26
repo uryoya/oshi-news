@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// urlの登録
 	$ranking = new NewsRanking();
 	$ranking->vote($url);
+	// ランキング更新
+	$ranking->update();
 }
 // index.phpにリダイレクトさせる
 back_home();

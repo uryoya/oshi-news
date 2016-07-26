@@ -57,6 +57,15 @@ class NewsRanking {
 		$sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT ".$limit.";";
 		return $this->dbh->query($sql);
 	}
+
+	/**
+	 * ランキング更新
+	 */
+	function update() {
+		$sql = "DELETE FROM urls WHERE ".
+			"last_revision <= cast(now() - interval '5 minues' as timestamp);";
+		$this->dbh->exec($sql);
+	}
 }
 
 
