@@ -31,6 +31,9 @@ function get_title($url) {
 }
 
 
+/**
+ * ランキングを司る者
+ */
 class NewsRanking {
 	function __construct() {
 		$this->dbh = new PDO("pgsql:dbname=oshinews;host=localhost", "uryoya", "pass");
