@@ -14,6 +14,8 @@ $ranking = $ranking->get_ranking(10);
 		<title>推しニュース（仮称）</title>
 	</head>
 	<body>
+		<h1>推しニュース!</h1>
+		<p>自分の今気になっているニュースを共有しよう！</p>
 		<form action="save.php" method="POST">
 			<input type="url" name="url">
 			<input type="submit" value="submit">
