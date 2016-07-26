@@ -40,15 +40,12 @@ class NewsRanking {
 			error_log($result, 0);
 		}
 
-		$datetime = date("Y-m-d H:i:s");
+//		$datetime = date("Y-m-d H:i:s");
 		if ($result > 0) {	// 既にURLがあれば投票数+1
-			$this->dbh->exec(
-				"UPDATE urls ".
-				"SET vote=vote+1, datetime='".$datetime."' ".
-				"WHERE id=".$result.";"
-			);
+			$sql = "UPDATE urls SET vote=vote+1 WHERE id=".$result.";";
+			$this->dbh->exec($sql);
 		} else {	// 投票がなければDB登録
-			$sql = "INSERT INTO urls (url, lank, vote, datetime) VALUES ('".$url."', 1, 1, '".$datetime."');";
+			$sql = "INSERT INTO urls (url, vote) VALUES ('".$url."', 1);";
 			$this->dbh->exec($sql);
 		}
 	}
