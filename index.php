@@ -1,9 +1,10 @@
 <?php
 // - DBからランキングを取得
 // - 最新版のランキングを表示する
-$dbh = new PDO("pgsql:dbname=oshinews;host=localhost", "uryoya", "pass");
-$sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT 3;";
+require "./utils.php";
 
+$ranking = new NewsRanking();
+$ranked_urls = $ranking->get_ranking(10);
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +20,11 @@ $sql = "SELECT url FROM urls ORDER BY vote DESC LIMIT 3;";
 		</form>
 		<ol>
 			<?php
-foreach ($dbh->query($sql) as $row) {
-	$url = $row['url'];
-	echo "<li><a href=\"".$url."\">".$url."</a>" ;
-}
-?>
+			foreach ($ranked_urls as $url) {
+				$url = $url['url'];
+				echo "<li><a href=\"".$url."\">".$url."</a>" ;
+			}
+			?>
 		</ol>
 	</body>
 </html>

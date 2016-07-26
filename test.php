@@ -1,8 +1,8 @@
 <?php
+require "./utils.php";
 
-$dbh = new PDO("pgsql:dbname=oshinews;host=localhost", "uryoya", "pass");
-//$sth = $dbh->prepare("SELECT url FROM urls ORDER BY vote DESC LIMIT 3;");
-$sql = "select url from urls;";
-foreach ($dbh->query($sql) as $row) {
-	echo $row['url']."\n";
+if (is_url("http://h.jp")) {
+	echo "this url exists!\n";
+} else {
+	echo "this url not exists!\n";
 }
